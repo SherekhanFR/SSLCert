@@ -1,5 +1,4 @@
-# SSLCert
-##Survival guide to generate, certify and manage SSL Certificate with Letsencrypt and Apache Tomcat 7
+# Survival guide to generate, certify and manage SSL Certificate with Letsencrypt and Apache Tomcat 7
 
 ###useful links : 
 - Letsencrypt documentation : https://letsencrypt.readthedocs.org/en/latest/
@@ -19,13 +18,19 @@ Test mode :
 
 	./letsencrypt-auto certonly --standalone --test-cert -d $mydomain --standalone-supported-challenges http-01 --http-01-port 8080 --renew-by-default --email $myemail --agree-tos
 
+	With :
+	 - standalone : the mode in which Letsencrypt is ran. This mode does not need any web server to perform the DNS challenge to authenticate your domain, letsencrypt client does it on its own.
+	 - $mydomain : the domain to be certified. Some domains are blacklisted (http://www.alexa.com/topsites) during the Letsencrypt beta program.
+	 - 8080 : the port used by letsencrypt client to do the DNS challenge
+	 - $myemail : the email address linked with the certificate
+	
 Normal mode :
 	
 	./letsencrypt-auto certonly --standalone -d $mydomain --standalone-supported-challenges http-01 --http-01-port 8080 --renew-by-default --email $myemail --agree-tos
 	
 	With :
-	 - standalone : the mode in which Letsencrypt is ran. This mode does not need any web server to perform the DNS challenge to authenticate your domain.
-	 - $mydomain : the domain to be certified. Some domain could be blacklisted during the Letsencrypt beta program.
+	 - standalone : the mode in which Letsencrypt is ran. This mode does not need any web server to perform the DNS challenge to authenticate your domain, letsencrypt client does it on its own.
+	 - $mydomain : the domain to be certified. Some domains are blacklisted (http://www.alexa.com/topsites) during the Letsencrypt beta program.
 	 - 8080 : the port used by letsencrypt client to do the DNS challenge
 	 - $myemail : the email address linked with the certificate
 	
