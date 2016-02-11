@@ -1,4 +1,4 @@
-# Survival guide to generate, validate and manage SSL Certificates with Letsencrypt and Apache Tomcat 7
+# Survival guide to generate, validate and manage SSL Server Certificates with Letsencrypt and Apache Tomcat 7
 
 ###Useful links : 
 - Letsencrypt documentation : https://letsencrypt.readthedocs.org/en/latest/

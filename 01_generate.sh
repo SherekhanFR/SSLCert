@@ -2,10 +2,13 @@
 #author ShereKhanFR based on Ivan Tichy script (https://community.letsencrypt.org/t/lets-encrypt-and-jira-tomcat-fully-automated-script/8164)
 
 #Please modify these values according to your environment
-certdir=/etc/letsencrypt/live/YOUR_DOMAIN/ #just replace the domain name after /live/
-mydomain=YOUR_DOMAIN #put your domain name here
-myemail=YOUR_EMAIL #your email
+certdir=/etc/letsencrypt/live/example.com/ #just replace the domain name after /live/
+mydomain=www.example.com #put your domain name here
+myemail=contact@example.com #your email
 keystoredir=/usr/share/tomcat7/.keystore #located in home dir of user that you Tomcat is running under
+KEYSTORE_PASS = 1234
+KEY_PASS = 1234
+PKCS12_PASS = 1234
 
 sudo service tomcat7 stop
 
