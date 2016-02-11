@@ -1,6 +1,6 @@
-# Survival guide to generate, certify and manage SSL Certificate with Letsencrypt and Apache Tomcat 7
+# Survival guide to generate, certify and manage SSL Certificates with Letsencrypt and Apache Tomcat 7
 
-###useful links : 
+###Useful links : 
 - Letsencrypt documentation : https://letsencrypt.readthedocs.org/en/latest/
 - Apache Tomacat documentation : https://tomcat.apache.org/tomcat-7.0-doc/index.html
 - The most important Keytool command : https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html
@@ -72,3 +72,28 @@ Import the certificate into the keystore
 	  - changeit2 : the password of the destination keystore
 	  - $certdir the path the generated certificate (generally in Letsencrypt_path/live/domain/*)
 	  - $keystoredir : the path of your keystore (created in step1)
+	  
+### 3/ Setup Apache Tomact 7
+
+In the Tomcat configuration file "server.xml" located on /etc/tomcat7/ activate the HTTPS connector
+    
+    <Connector 	port="8443" protocol="HTTP/1.1" SSLEnabled="true"
+				maxThreads="150" scheme="https" secure="true"
+				clientAuth="false" sslProtocol="TLS" 
+				keystoreFile="${user.home}/.keystore" keystorePass="changeit"
+				truststoreFile="${user.home}/.keystore" truststorePass="changeit"
+	       />
+		   
+	with : 
+	  - your keystore located in tomcat user directory (/usr/share/tomcat7/.keystore)
+	  - changeit the password of your keystore
+	  
+Reboot tomcat7 service
+
+	sudo service tomcat7 restart
+	
+Check the correct start of Apache Tomcat 7 in catalina.out file (/var/lib/tomcat7/logs)
+
+### 4/ Test your certificate
+
+Now if you connect on your server via the certified domain with HTTPS, you should be able to show the certificate, signed by Letsencrypt Authority
